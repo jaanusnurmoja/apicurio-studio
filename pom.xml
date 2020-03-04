@@ -55,8 +55,9 @@
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
         <timestamp>${maven.build.timestamp}</timestamp>
 
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.source>1.8</maven.compiler.source>
+        <java.version>11</java.version>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
 
         <!-- Wildfly Version -->
         <version.wildfly>17.0.1.Final</version.wildfly>
@@ -387,8 +388,24 @@
                 <artifactId>resteasy-jaxrs</artifactId>
                 <version>${version.org.jboss.resteasy}</version>
             </dependency>
+            <dependency>
+                <groupId>org.javassist</groupId>
+                <artifactId>javassist</artifactId>
+                <version>3.23.1-GA</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>2.20.0</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.jaxb</groupId>
+                <artifactId>jaxb-runtime</artifactId>
+                <version>2.4.0-b180608.0325</version>
+            </dependency>
         </dependencies>
-    </dependencyManagement>
+     </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -397,7 +414,13 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
+    <repositories>
+        <repository>
+            <id>jvnet-nexus-staging</id>
+    <url>http://maven.java.net/content/repositories/staging/</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
     <build>
         <pluginManagement>
             <plugins>
@@ -471,6 +494,16 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${version.compiler.plugin}</version>
+                    <configuration>
+                        <release>${java.version}</release>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.ow2.asm</groupId>
+                            <artifactId>asm</artifactId>
+                            <version>6.2</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -521,6 +554,13 @@
                             <java.io.tmpdir>${project.build.directory}</java.io.tmpdir>
                         </systemProperties>
                     </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.ow2.asm</groupId>
+                            <artifactId>asm</artifactId>
+                            <version>6.2</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
