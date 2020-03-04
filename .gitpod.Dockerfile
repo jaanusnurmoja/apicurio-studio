@@ -5,7 +5,7 @@ USER gitpod
 FROM gitpod/workspace-full
 
 RUN bash -c ". /home/gitpod/.sdkman/bin/sdkman-init.sh \
-             && dk install java 8.0.241-zulufx\	
+             && sdk install java 8.0.241-zulufx\	
              && sdk default java 8.0.241-zulufx"
 
 # Install custom tools, runtime, etc. using apt-get
