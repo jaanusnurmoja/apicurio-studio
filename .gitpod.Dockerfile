@@ -5,8 +5,8 @@ USER gitpod
 FROM gitpod/workspace-full
 
 RUN bash -c ". /home/gitpod/.sdkman/bin/sdkman-init.sh \
-             && sdk install 8.0.242-open\	
-             && sdk default 8.0.242-open"
+             && sdk install 8.0.232.fx-zulu\	
+             && sdk default 8.0.232.fx-zulu"
 
 # Install custom tools, runtime, etc. using apt-get
 # For example, the command below would install "bastet" - a command line tetris clone:
