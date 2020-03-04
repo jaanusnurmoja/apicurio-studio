@@ -5,7 +5,7 @@ USER gitpod
 FROM gitpod/workspace-full
 
 RUN bash -c ". /home/gitpod/.sdkman/bin/sdkman-init.sh \
-             && sdk install openjdk-8-jdk"
+             && sdk install java 1.8.0_202"
 
 # Install custom tools, runtime, etc. using apt-get
 # For example, the command below would install "bastet" - a command line tetris clone:
